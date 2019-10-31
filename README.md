@@ -58,7 +58,7 @@
  + UI will be added on
 
 ### Usage
-python3 puzzle.py -i <path to original img> -d <path to where imgs are stored> -o <path to output> 
+python3 puzzle.py -i $<$path to original img> -d $<$path to where imgs are stored> -o $<$path to output> 
 
 
 **will be modified later when the imgs from the db are integrated into the tool**
