@@ -1,4 +1,4 @@
-# Please add documentation for this Repo
+# Smart Photomosaic
 
 ## Frontend & Backend:
 
@@ -45,3 +45,12 @@
 ## Picture Storage:
 
 ## Picture combination:
+
+## Contributors
+- [Ahn TaeGyu](https://github.com/Letm3through)
+
+- [Fan Yuting](https://github.com/April0616)
+
+- [Zhang Jingchen](https://github.com/jingchen-z)
+
+- [Lucy Chan](https://github.com/lucydotc)
