@@ -40,7 +40,7 @@
 ----------|------------|------|
 |store_raw_images|keyword|`None` (store images data crawl based on a keyword into the database)|
 
-*store_raw_images make use of multiprocessinng with 0.05s sleep*
+*Note: store_raw_images make use of multiprocessinng with 0.05s sleep*
 
 ## Picture Storage:
 
