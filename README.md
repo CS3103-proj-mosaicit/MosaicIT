@@ -5,6 +5,19 @@
 - [html5](https://en.wikipedia.org/wiki/HTML5)
 - [css3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 
+
+Homepage:
+
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-home.png)
+
+Upload Page:
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-upload.png)
+
+Gallery Page:
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-gallery1.png)
+
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-gallery2.png)
+
 ## Crawling algorithm:
 ### Websites used for image collection:
 
