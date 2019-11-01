@@ -1,6 +1,9 @@
 # Smart Photomosaic
 
 ## Frontend & Backend:
+- [python flask](http://flask.palletsprojects.com/en/1.1.x/)
+- [html5](https://en.wikipedia.org/wiki/HTML5)
+- [css3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 
 ## Crawling algorithm:
 ### Websites used for image collection:
