@@ -1,3 +1,11 @@
+# This is to keep track of keywords cralwed
+```
+flower
+snow
+sky
+```
+
+
 # Setup Flow
 ## Docker -> Python module -> Testing script
 
@@ -52,3 +60,4 @@ db.avg_rgb(img)
 ```
 python3 testing_script.py
 ```
+
