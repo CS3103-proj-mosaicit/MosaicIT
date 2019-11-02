@@ -5,14 +5,14 @@ import random
 import zlib
 from PIL import Image
 class db(object):
-  def __init__(self):
-    self.__connect()
+  def init(self):
+    self.connect()
     self.cursor.execute("CREATE DATABASE IF NOT EXISTS " + self.db_name)
     self.cursor.execute("USE " + self.db_name)
-    self.cursor.execute("CREATE TABLE IF NOT EXISTS image(id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY, rgb INT NOT NULL, hash INT NOT NULL, img MEDIUMBLOB)")
+    self.cursor.execute("CREATE TABLE IF NOT EXISTS image(id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY, rgb INT NOT NULL, hash INT NOT NULL UNIQUE, img MEDIUMBLOB)")
     
 
-  def __connect(self):
+  def connect(self):
     self.db_name = "imagedb"
     self.conn = mysql.connector.connect(host='localhost',
                                   user='root',
@@ -40,7 +40,7 @@ class db(object):
     f.close()
 
   def avg_rgb(self, img):
-    pic = Image.open(io.BytesIO(img))
+    pic = self.raw_to_img(img)
     im = np.array(pic)
     # get shape
     w,h,d = im.shape
@@ -51,11 +51,13 @@ class db(object):
     print(rgb)
     return int('%02x%02x%02x' % rgb, 16)
 
-  def insert_img(self, img):
-    h = zlib.crc32(img)
-    rgb = self.avg_rgb(img)
+  def insert_img(self, raw_img):
+    img = self.resize_cut(self.raw_to_img(raw_img))
+    raw_img = self.img_to_raw(img)
+    h = zlib.crc32(raw_img)
+    rgb = self.avg_rgb(raw_img)
     try:
-      self.cursor.execute("INSERT INTO imagedb.image(rgb, hash, img) VALUES (%s, %s, %s)", (rgb, h, img))
+      self.cursor.execute("INSERT INTO imagedb.image(rgb, hash, img) VALUES (%s, %s, %s)", (rgb, h, raw_img))
       self.conn.commit()
     except:
       return -1
@@ -70,6 +72,31 @@ class db(object):
       return -1
     return result
 
+  def select_ten(self):
+    self.cursor.execute("SELECT * FROM imagedb.image LIMIT 10")
+    return self.cursor.fetchall()
+
   def close_connection(self):
     self.cursor.close()
     self.conn.close()
+
+  def resize_cut(self, img): # @raw bytes img, any size =. 300 * 300 pix
+    size=img.size
+    if(size[0] > size[1]):
+      img = img.resize((int(size[0]/size[1]*300), 300))
+      size = img.size
+      img = img.crop(( int((size[0] - 300) / 2), 0, int((size[0] + 300) / 2), 300))
+    else:
+      img = img.resize((300, int(size[1]/size[0]*300)))
+      size = img.size
+      img = img.crop(( 0, int( (size[1] - 300) / 2), 300, int( (size[1] + 300) / 2) ))
+    return img
+
+  def raw_to_img(self, raw_img): # @img obj
+    return Image.open(io.BytesIO(raw_img))
+
+  def img_to_raw(self, img):
+    byteIO = io.BytesIO()
+    img.save(byteIO, format='PNG')
+    return byteIO.getvalue()
+
