@@ -176,7 +176,7 @@ def store_raw_images(keyword):
 				if data is None:
 					pass
 				else:
-					print(len(data))
+					# print(len(data))
 					db = ImageDB.db()
 					db.connect()
 					db.insert_img(data)

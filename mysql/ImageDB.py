@@ -9,7 +9,7 @@ class db(object):
     self.connect()
     self.cursor.execute("CREATE DATABASE IF NOT EXISTS " + self.db_name)
     self.cursor.execute("USE " + self.db_name)
-    self.cursor.execute("CREATE TABLE IF NOT EXISTS image(id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY, rgb INT NOT NULL, hash INT NOT NULL UNIQUE, img MEDIUMBLOB)")
+    self.cursor.execute("CREATE TABLE IF NOT EXISTS image(id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY, r INT NOT NULL, g INT NOT NULL, b INT NOT NULL, hash INT NOT NULL UNIQUE, img MEDIUMBLOB)")
     
 
   def connect(self):
@@ -28,7 +28,7 @@ class db(object):
     data = f.read()
     h = zlib.crc32(data)
     try:
-      self.cursor.execute("INSERT INTO imagedb.image(rgb, hash, img) VALUES (%s, %s, %s)", (0x010305, h, data))
+      self.cursor.execute("INSERT INTO imagedb.image(r, g, b, hash, img) VALUES (%s, %s, %s, %s, %s)", (0, 0, 0, h, data))
       self.conn.commit()
     except:
       pass
@@ -48,7 +48,6 @@ class db(object):
     im.shape = (w*h, d)
     # get average
     rgb = tuple(int(round(x)) for x in tuple(im.mean(axis=0)))
-    print(rgb)
     return int('%02x%02x%02x' % rgb, 16)
 
   def insert_img(self, raw_img):
@@ -56,21 +55,37 @@ class db(object):
     raw_img = self.img_to_raw(img)
     h = zlib.crc32(raw_img)
     rgb = self.avg_rgb(raw_img)
+    r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
     try:
-      self.cursor.execute("INSERT INTO imagedb.image(rgb, hash, img) VALUES (%s, %s, %s)", (rgb, h, raw_img))
+      self.cursor.execute("INSERT INTO imagedb.image(r, g, b, hash, img) VALUES (%s, %s, %s, %s, %s)", (r, g, b, h, raw_img))
       self.conn.commit()
+      print((r, g, b))
     except:
       return -1
     return 1
 
-  def select_img(self, rgb):
+  def select_rgb(self, rgb):
     try:
-      self.cursor.execute("SELECT img FROM imagedb.image WHERE rgb=%s", (rgb,))
+      r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
+      self.cursor.execute("SELECT img FROM imagedb.image WHERE r=%s AND g=%s And b=%s", (r, g, b))
       result = self.cursor.fetchone()[0]
       # print(len(result))
     except:
       return -1
     return result
+  
+  def select_rough_rgb(self, rgb):
+    img = None
+    step = 10
+    r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
+    while not img:
+      try:
+        self.cursor.execute("SELECT img FROM imagedb.image WHERE r > %s AND r < %s AND g > %s AND g < %s AND b > %s And b < %s;", (r - step, r + step, g - step, g + step, b - step, b + step))
+        step += 10
+        img = self.cursor.fetchone()[0]
+      except:
+        continue
+      return img
 
   def select_ten(self):
     self.cursor.execute("SELECT * FROM imagedb.image LIMIT 10")

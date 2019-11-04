@@ -1,27 +1,26 @@
 import ImageDB
 from PIL import Image
 import io
+from image_cralwer import store_raw_images
+
 db = ImageDB.db()
-db.tesging_path='./'# rmb to put an image img.jpg under 
+# db.tesging_path='./'# rmb to put an image img.jpg under 
 
-# Testing databse insert/select
-db.test()
+db.init()
 
+print("The testing cralwing may take 20s...")
+# store_raw_images("sky")
+print("Skipping crawl testing...")
 
-# Testing rgb calculation
-f=open('img.jpg','rb')
-data=f.read()
-f.close()
-avg = db.avg_rgb(data)
-print(avg)
+print("Opening 10 testing images...")
+ten = db.select_ten()
+for row in ten:
+  print((row[1], row[2], row[3]))
+  db.raw_to_img(row[5]).show()
 
-# Testing image insertion
-print("Inserting image!")
-print(db.insert_img(data))
-
-# Testing image retrive
-img = db.select_img(avg)
-if img != -1:
-  Image.open(io.BytesIO(img)).show()
-else:
-  print("Error in selecting image!")
+print("Selecting a pic close to light blue color...")
+img = db.select_rough_rgb(0x79FFEE)
+rgb=db.avg_rgb(img)
+r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
+print("Input rgb: (121, 255, 238), output rgb:" + str((r, g, b)))
+db.raw_to_img(img).show()
