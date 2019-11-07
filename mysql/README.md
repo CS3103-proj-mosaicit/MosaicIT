@@ -1,4 +1,4 @@
-# To cralw image with keywords
+# To crawl image with keywords
 1. Modify keywords.txt
 ```
 some
