@@ -1,4 +1,4 @@
-# To cralw image with keywords
+# To crawl image with keywords
 1. Modify keywords.txt
 ```
 some
@@ -10,27 +10,42 @@ file
 ```
 2. Run
 ```
-python3 cralw.py
+python3 crawl.py
 ```
 
-## This is to keep track of keywords cralwed
+## This is to keep track of keywords crawled
 ```
 flower
 sky
 snow
 sea
+sunset
+star
+cat
+dog
 ```
-Note: cralwed images stored in `db.sql`
+Note: crawled images stored in `db.sql`
 
 # Setup Flow
 ## Docker -> Python module -> Testing script
 
 
 ## For Docker start:
-execute
+1. Execute
 ```
 docker-compose -f stack.yml up
 ```
+2. Then `command + t` to open a new terminal
+3. Insert existing image data by executing
+```
+docker ps # to get the container ID
+cp ./db.sql CONTAINER_ID:/db.sql
+docker exec -it CONTAINER_ID bash
+$bash mysql -u root -p < /db.sql # root password mentioned below
+`control + d` to exit
+```
+4. Testing
+run `python3 testing_script.py` to test extracting image from database.
 
 ## MySQLWorkench
 You may want this application to help access MySQL.
@@ -74,7 +89,7 @@ db.avg_rgb(img)
 ## Testing
 
 ```
-python3 testing_script.py
+python3 testing_script.py # this will open 11 images in database.
 ```
 
 # ImageDB Available functions

@@ -51,12 +51,12 @@ class db(object):
     return int('%02x%02x%02x' % rgb, 16)
 
   def insert_img(self, raw_img):
-    img = self.resize_cut(self.raw_to_img(raw_img))
-    raw_img = self.img_to_raw(img)
-    h = zlib.crc32(raw_img)
-    rgb = self.avg_rgb(raw_img)
-    r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
     try:
+      img = self.resize_cut(self.raw_to_img(raw_img))
+      raw_img = self.img_to_raw(img)
+      h = zlib.crc32(raw_img)
+      rgb = self.avg_rgb(raw_img)
+      r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256  
       self.cursor.execute("INSERT INTO imagedb.image(r, g, b, hash, img) VALUES (%s, %s, %s, %s, %s)", (r, g, b, h, raw_img))
       self.conn.commit()
       print((r, g, b))
