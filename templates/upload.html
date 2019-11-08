@@ -89,17 +89,19 @@
 <!--                     <h2>Say hello..</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> -->
 
-                    <form action="/upload-image" method="POST" enctype="multipart/form-data">
-                         <div class="row">
+                    <form method="POST" enctype="multipart/form-data">
+                          {{ form.csrf_token }}
+                          <div class="row">
                               <div class="col-md-4 col-sm-4">
                                </div>
 
                               <div class="col-md-4 col-sm-4">
-                                   <input name="submit" type="submit" class="form-control" id="upload" value="Upload Your Image">
+                                   <input name="picture" type="file" class="form-control" id="upload" value="Upload Your Image">
                               </div>
                               <div class="col-md-4 col-sm-4">
                                </div>
                           </div>
+                          <!-- {{ form.submit }}<br> -->
 
                           <div class="row">
 
@@ -107,7 +109,7 @@
                                </div>
 
                               <div class="col-md-6 col-sm-6">
-                                   <input name="subject" type="text" class="form-control" id="theme" placeholder="Mosaic Theme">
+                                   <input name="theme" type="text" class="form-control" id="theme" placeholder="Mosaic Theme">
                            	 </div>
 
                                <div class="col-md-3 col-sm-3">
