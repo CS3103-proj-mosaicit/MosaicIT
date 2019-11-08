@@ -109,7 +109,7 @@ $bash mysql -u root -p < /db.sql # root password mentioned below
 4. Testing
 run `python3 testing_script.py` to test extracting image from database.
 
-### MySQLWorkench
+### MySQLWorkbench
 You may want this application to help access MySQL.
 
 ### MySQL Setup Guide
