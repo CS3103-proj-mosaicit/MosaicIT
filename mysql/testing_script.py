@@ -1,7 +1,7 @@
 import ImageDB
 from PIL import Image
 import io
-from image_cralwer import store_raw_images
+from image_crawler import store_raw_images
 
 db = ImageDB.db()
 # db.tesging_path='./'# rmb to put an image img.jpg under 
