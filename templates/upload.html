@@ -89,19 +89,22 @@
 <!--                     <h2>Say hello..</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> -->
 
-                    <form method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                           {{ form.csrf_token }}
                           <div class="row">
                               <div class="col-md-4 col-sm-4">
                                </div>
 
                               <div class="col-md-4 col-sm-4">
-                                   <input name="picture" type="file" class="form-control" id="upload" value="Upload Your Image">
+                                   <input name="photo" type="file" class="form-control" id="photo" value="Upload Your Image">
                               </div>
                               <div class="col-md-4 col-sm-4">
                                </div>
                           </div>
                           <!-- {{ form.submit }}<br> -->
+                          {% if form.errors %}
+                          {{ form.errors }}
+                          {% endif %}
 
                           <div class="row">
 

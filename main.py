@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask import request, redirect
 from flask import send_from_directory
+from flask import flash, session, url_for
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import SubmitField
@@ -51,12 +52,15 @@ def upload():
  #        path = ".\\static\\" + file
     form = UploadForm()
     if form.validate_on_submit():
+        print("validate on submit!")
         f = form.photo.data
         filename =random_filename(f.filename)
         f.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         flash('Upload success.')
         session['filenames'] = [filename]
         return redirect(url_for('show_images'))
+    else:
+        print("not validate on submit!")
     return render_template('upload.html', form = form)
     # if request.method == "POST":
     #     if request.files:
