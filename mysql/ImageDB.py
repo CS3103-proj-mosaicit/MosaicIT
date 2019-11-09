@@ -130,13 +130,13 @@ class db(object):
             self.cursor.execute("SELECT id FROM imagedb.image;")
             #identifiers = self.cursor.fetchall()
             identifiers= [x[0] for x in self.cursor.fetchall()] 
-            print('IDENTIFIERS: ' +str(identifiers))
+            #print('IDENTIFIERS: ' +str(identifiers))
             #print(str(type(identifiers)))
 
             for identifier in identifiers:
                 print('inside my select closest rgb: ' +str(identifier) + '\n')
                 self.cursor.execute("SELECT r,g,b,img  FROM imagedb.image WHERE id=%s;", (identifier,) )
-                print('a')
+                #print('a')
                 test_r, test_g, test_b, test_imagedata = self.cursor.fetchone()
                 print('test_r ' + str(test_r) + 'test_g ' + str(test_g) + 'test_b ' + str(test_b))
                 test_point = np.array([test_r, test_g, test_b]) 

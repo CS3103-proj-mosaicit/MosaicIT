@@ -20,7 +20,7 @@ db.init()
 print("Skipping crawl testing...")
 
 im = Image.open(src_img_path)
-imm = im.thumbnail((15, 15))
+#imm = im.thumbnail((15, 15))
 px = im.load() #px is 2d matrix of pixel coordinates
 #im.show()
 width, height, = im.size
@@ -34,7 +34,7 @@ print('Creating new canvas with width '
 
 canvas = Image.new('RGB', (canvas_width, canvas_height), (0, 0, 255))
 #canvas.show()
-print("file type " + str(type(im)))
+#print("file type " + str(type(im)))
 
 num_tiles_needed = width * height
 
@@ -44,7 +44,7 @@ tiles_selected = db.select_num(30)
 
 for i in range(0, width):
     canvas_x = i*SCALE
-    for j in range(0, width):
+    for j in range(0, height):
         canvas_y = j*SCALE 
         
         print('px[' +str(i) +',' +str(j)+ ']'+ ' is ' + str(px[i,j]))
@@ -52,16 +52,16 @@ for i in range(0, width):
         px_g = px[i,j][1]
         px_b = px[i,j][2]
         hexcolour = db.rgb_to_hex(px_r,px_g,px_b)
-        #print(type(hexcolour))
+        print(type(hexcolour))
          
         print("Selecting pic close to " + str(px[i,j]))
-        #img = db.select_rough_rgb(hexcolour)
-        img = db.select_closest_rgb((px[i,j]))   
+        img = db.select_rough_rgb(hexcolour)
+        #img = db.select_closest_rgb((px[i,j]))   
         #print(base64.b64encode(img))
        
-        #rgb=db.avg_rgb(img)
-        #r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
-        #print("Input rgb: " +str((px_r, px_g, px_b)) +", output rgb:" + str((r, g, b)))
+        rgb=db.avg_rgb(img)
+        r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
+        print("Input rgb: " +str((px_r, px_g, px_b)) +", output rgb:" + str((r, g, b)))
         #db.raw_to_img(img).show() 
         img = db.raw_to_img(img)
         #print(str(type(img))) #giving back nontype
