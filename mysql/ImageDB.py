@@ -87,8 +87,8 @@ class db(object):
         continue
       return img
 
-  def select_ten(self):
-    self.cursor.execute("SELECT * FROM imagedb.image LIMIT 10")
+  def select_num(self, num):
+    self.cursor.execute("SELECT * FROM imagedb.image LIMIT " + str(num))
     return self.cursor.fetchall()
 
   def close_connection(self):
@@ -115,3 +115,5 @@ class db(object):
     img.save(byteIO, format='PNG')
     return byteIO.getvalue()
 
+  def rgb_to_hex(self, r, g, b):
+      return int((r<<16) + (g<<8) + b)

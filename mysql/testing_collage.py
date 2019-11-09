@@ -51,7 +51,7 @@ for i in range(0, 5):
         px_r = px[i,j][0]
         px_g = px[i,j][1]
         px_b = px[i,j][2]
-        hexcolour = db.rgb2hex(px_r,px_g,px_b)
+        hexcolour = db.rgb_to_hex(px_r,px_g,px_b)
         #print(type(hexcolour))
          
         print("Selecting pic close to " + str(hex(hexcolour)))

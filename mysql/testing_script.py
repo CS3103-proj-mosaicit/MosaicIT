@@ -1,7 +1,7 @@
 import ImageDB
 from PIL import Image
 import io
-from image_cralwer import store_raw_images
+from image_crawler import store_raw_images
 
 db = ImageDB.db()
 # db.tesging_path='./'# rmb to put an image img.jpg under 
@@ -13,7 +13,7 @@ print("The testing cralwing may take 20s...")
 print("Skipping crawl testing...")
 
 print("Opening 10 testing images...")
-ten = db.select_ten()
+ten = db.select_num(10)
 for row in ten:
   print((row[1], row[2], row[3]))
   db.raw_to_img(row[5]).show()
