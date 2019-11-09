@@ -52,21 +52,6 @@
   </div>
 </div>
 
-<!-- Home Section -->
-<!-- 
-<section id="home" class="main-contact parallax-section">
-     <div class="overlay"></div>
-     <div class="container">
-          <div class="row">
-               <div class="col-md-12 col-sm-12">
-                    <h1>Upload Picture and Get Your Mosaic!</h1>
-               </div>
-          </div>
-     </div>
-</section> -->
-
-<!-- Home Section -->
-
 <section id="home" class="main-contact parallax-section">
      <div class="overlay"></div>
      <div id="particles-js"></div>
@@ -91,7 +76,7 @@
                     {% if session.filenames %}
                     {% for filename in session.filenames %}
                     <a href="{{ url_for('get_file', filename=filename) }}" target="_blank">
-                        <img src="{{ url_for('get_file', filename=filename) }}">
+                        <img class="img-responsive" alt="Blog Image 3" src="{{ url_for('get_file', filename=filename) }}">
                     </a>
                     <br/>
                     <br/>
