@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask import request, redirect
-from flask import send_from_directory
+from flask import send_from_directory, send_file
 from flask import flash, session, url_for
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -41,6 +41,12 @@ def show_images():
 def get_file(filename):
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
+@app.route('/download/<path:filename>')
+def downloadFile(filename):
+    #For windows you need to use drive name [ex: F:/Example.pdf]
+    path = os.path.join(app.config['UPLOAD_PATH'], filename)
+    return send_file(path, as_attachment=True)
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -68,5 +74,6 @@ def upload():
 
     # return render_template('upload.html')
 
+
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000, debug=False)

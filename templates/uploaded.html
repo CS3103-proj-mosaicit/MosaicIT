@@ -85,16 +85,32 @@
      <div class="container">
           <div class="row">
                <div class="col-md-offset-1 col-md-10 col-sm-12">
-                  <h2>Uploaded Successful! </h2>
-                  {% block content %}
-                  {% if session.filenames %}
-                  {% for filename in session.filenames %}
-                  <a href="{{ url_for('get_file', filename=filename) }}" target="_blank">
-                      <img src="{{ url_for('get_file', filename=filename) }}">
-                  </a>
-                  {% endfor %}
-                  {% endif %}
-                  {% endblock %}
+                  <center>
+                    <h2>Uploaded Successful! </h2>
+                    {% block content %}
+                    {% if session.filenames %}
+                    {% for filename in session.filenames %}
+                    <a href="{{ url_for('get_file', filename=filename) }}" target="_blank">
+                        <img src="{{ url_for('get_file', filename=filename) }}">
+                    </a>
+                    <br/>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                          <a href="{{ url_for('downloadFile', filename=filename) }}">
+                             <input name="submit" type="submit" class="form-control" id="submit" value="Download Your Mosaic">
+                          </a>
+                          {% endfor %}
+                          {% endif %}
+                          {% endblock %}
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                         </div>
+                    </div>
+                  </center>
 
                   <div class="row">
                       <div class="col-md-4 col-sm-4">
