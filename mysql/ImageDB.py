@@ -135,24 +135,23 @@ class db(object):
 
             for identifier in identifiers:
                 print('inside my select closest rgb: ' +str(identifier) + '\n')
-                self.cursor.execute("SELECT r, g, b, img FROM imagedb.image WHERE id=%s;", str(identifier))
+                self.cursor.execute("SELECT r,g,b,img  FROM imagedb.image WHERE id=%s;", (identifier,) )
                 print('a')
                 test_r, test_g, test_b, test_imagedata = self.cursor.fetchone()
                 print('test_r ' + str(test_r) + 'test_g ' + str(test_g) + 'test_b ' + str(test_b))
-                test_point = np.array([test_r, test_g, test_b])
-                print('c')
-                test_dist = numpy.linalg.norm(sampled_src-test_point)
-                print('numpy euclidean')
-
+                test_point = np.array([test_r, test_g, test_b]) 
+                print('calculating distance diff')
+                test_dist = ((test_r - r)**2 + (test_g - g)**2 + (test_b - b)**2)**0.5
                 print('test_dist is ' +str(test_dist))
 
-                if test_dist < candidate.distance:
-                    print(str(test_dist) + ' < ' + str(candidate.distance))
-                    candidate.image_data = test_imagedata
+                if test_dist < candidate['distance']:
+                    print(str(test_dist) + ' < ' + str(candidate['distance']))
+                    candidate['image_data'] = test_imagedata
+                    candidate['distance'] = test_dist
                 else:
-                    print('last distance' + str(candidate.distance) +' was closer')
+                    print('last distance' + str(candidate['distance'] +' was closer'))
         except:
             pass
 
-        return candidate_imagedata
+        return candidate['image_data']
 

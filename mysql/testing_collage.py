@@ -15,12 +15,12 @@ src_img_path = input("Please enter the path to the src img")
 db = ImageDB.db()
 db.init()
 
-print("The testing crawling may take 20s...")
+#print("The testing crawling may take 20s...")
 #store_raw_images("sky")
 print("Skipping crawl testing...")
 
 im = Image.open(src_img_path)
-imm = im.thumbnail((50, 50))
+imm = im.thumbnail((15, 15))
 px = im.load() #px is 2d matrix of pixel coordinates
 #im.show()
 width, height, = im.size
@@ -42,9 +42,9 @@ print("Opening "+ str(num_tiles_needed) + " testing images...")
 #tiles_selected = db.select_num(num_tiles_needed)
 tiles_selected = db.select_num(30)
 
-for i in range(0, 10):
+for i in range(0, width):
     canvas_x = i*SCALE
-    for j in range(0, 10):
+    for j in range(0, width):
         canvas_y = j*SCALE 
         
         print('px[' +str(i) +',' +str(j)+ ']'+ ' is ' + str(px[i,j]))
@@ -59,9 +59,9 @@ for i in range(0, 10):
         img = db.select_closest_rgb((px[i,j]))   
         #print(base64.b64encode(img))
        
-        rgb=db.avg_rgb(img)
-        r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
-        print("Input rgb: " +str((px_r, px_g, px_b)) +", output rgb:" + str((r, g, b)))
+        #rgb=db.avg_rgb(img)
+        #r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
+        #print("Input rgb: " +str((px_r, px_g, px_b)) +", output rgb:" + str((r, g, b)))
         #db.raw_to_img(img).show() 
         img = db.raw_to_img(img)
         #print(str(type(img))) #giving back nontype
