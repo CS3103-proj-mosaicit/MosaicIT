@@ -39,8 +39,8 @@ canvas = Image.new('RGB', (canvas_width, canvas_height), (0, 0, 255))
 num_tiles_needed = width * height
 
 print("Opening "+ str(num_tiles_needed) + " testing images...")
-#tiles_selected = db.select_num(num_tiles_needed)
-tiles_selected = db.select_num(30)
+tiles_selected = db.select_num(num_tiles_needed)
+#tiles_selected = db.select_num(30)
 
 for i in range(0, width):
     canvas_x = i*SCALE
