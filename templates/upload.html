@@ -96,7 +96,7 @@
                                </div>
 
                               <div class="col-md-4 col-sm-4">
-                                   <input name="photo" type="file" id="photo" class="inputfile" accept="image/jpg, image/jpeg, image/png" style="position:absolute;clip:rect(0 0 0 0);" data-multiple-caption="{count} files selected" multiple>
+                                   <input name="photo" type="file" id="photo" class="inputfile" accept="image/jpg, image/jpeg, image/png" style="position:absolute;clip:rect(0 0 0 0);">
                                    <label class="form-control" for="photo" id="upload_img"><center>Upload Your Image</center></label>
                               </div>
                               <div class="col-md-4 col-sm-4">
@@ -182,9 +182,7 @@ Array.prototype.forEach.call( inputs, function( input ) {
 
   input.addEventListener( 'change', function( e ) {
     var fileName = '';
-    if( this.files && this.files.length > 1 ) {
-      fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-    } else {
+    if( this.files ) {
       fileName = e.target.value.split( '\\' ).pop();
     }
     if( fileName ) {
