@@ -164,22 +164,25 @@ python3 testing_script.py
 
 ## Picture combination:
 
-### Repo used for Mosaic Tool
+### Collaging & Mosaicing
 
-[https://github.com/NoisyWinds/puzzle.git](https://translate.google.com/translate?hl=en&sl=zh-CN&tl=en&u=https://github.com/NoisyWinds/puzzle)
+This portion handles the collaging and mosaicing of the pictures from the DB to re-create the source image.
 
-
-### Modules to be Optimised/Replaced
-
- - Scraper
- - Storage
- + UI will be added on
 
 ### Usage
-python3 puzzle.py -i $<$path to original img> -d $<$path to where imgs are stored> -o $<$path to output> 
+python3 collage.py <path to src img>
 
+**NOTE: SUPPORTS ONLY JPG ** 
 
-**will be modified later when the imgs from the db are integrated into the tool**
+> this will output ./mosaic.jpg which is the final mosaic picture
+
+**NOTE: try to use a smaller aspect ratio source file, because it will be scaled up many times for mosaicing**  
+
+### Logic
+Each pixel of the original image is replaced by a crawled picture instead. Calculation is done to match the Black-White levels so that the source image may be recreated.
+
+The crawled pictures will be resized to 20 by 20 pixels, and since it replaces each pixel in the source image, the source image will be scaled to a factor of 20.
+
 
 
 ## Contributors
