@@ -8,8 +8,8 @@ import base64
 SCALE= 20
 
 
-src_img_path = './tea.jpg'
-#src_img_path = input("Please enter the path to the src img")
+#src_img_path = './tea.jpg'
+src_img_path = input("Please enter the path to the src img")
 
 
 db = ImageDB.db()
