@@ -6,7 +6,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import SubmitField
 import uuid
-import os  # for image upload
+import os  # for path
 
 app = Flask(__name__)
 app.config['UPLOAD_PATH'] = os.path.join(app.root_path, 'uploads')
@@ -43,37 +43,30 @@ def get_file(filename):
 
 @app.route('/download/<path:filename>')
 def downloadFile(filename):
-    #For windows you need to use drive name [ex: F:/Example.pdf]
     path = os.path.join(app.config['UPLOAD_PATH'], filename)
     return send_file(path, as_attachment=True)
 
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-	# if request.method == 'POST':
- #        postdata = request.form
- #        file_name = postdata['filename']
- #        print("file name: ====================== {}".format(file_name))
- #        file = str(file_name)
- #        path = ".\\static\\" + file
     form = UploadForm()
     if form.validate_on_submit():
         f = form.photo.data
-        filename =random_filename(f.filename)
-        f.save(os.path.join(app.config['UPLOAD_PATH'], filename))
-        flash('Upload success.')
-        session['filenames'] = [filename]
+        
+        # rename the photo
+        filename = random_filename(f.filename)
+
+        # save the photo
+        path_to_save = os.path.join(app.config['UPLOAD_PATH'], filename)
+        f.save(path_to_save)
+
+        # perform logic to do mosaic - to be modified
+        mosaic_file_name = filename
+
+        # save the final image name to display to session
+        session['filenames'] = [mosaic_file_name]
         return redirect(url_for('show_images'))
     return render_template('upload.html', form = form)
-    # if request.method == "POST":
-    #     if request.files:
-    #         image = request.files["image"]
-    #         image.save(os.path.join(app.config["IMAGE_UPLOADS"], image))
-    #         print("Image saved")
-    #         return redirect(request.url)
-
-    # return render_template('upload.html')
-
 
 if __name__ == '__main__':
     app.run(port=5000, debug=False)
