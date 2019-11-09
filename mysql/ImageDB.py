@@ -4,6 +4,7 @@ import numpy as np
 import random
 import zlib
 from PIL import Image
+from PIL import ImageEnhance
 
 class db(object):
     def init(self):
