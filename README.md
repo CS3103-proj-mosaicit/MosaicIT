@@ -172,7 +172,7 @@ This portion handles the collaging and mosaicing of the pictures from the DB to 
 ### Usage
 python3 collage.py <path to src img>
 
-**NOTE: SUPPORTS ONLY JPG ** 
+**NOTE: SUPPORTS ONLY JPG**  
 
 > this will output ./mosaic.jpg which is the final mosaic picture
 
