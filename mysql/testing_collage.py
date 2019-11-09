@@ -42,9 +42,9 @@ print("Opening "+ str(num_tiles_needed) + " testing images...")
 #tiles_selected = db.select_num(num_tiles_needed)
 tiles_selected = db.select_num(30)
 
-for i in range(0, 5):
+for i in range(0, 10):
     canvas_x = i*SCALE
-    for j in range(0, 6):
+    for j in range(0, 10):
         canvas_y = j*SCALE 
         
         print('px[' +str(i) +',' +str(j)+ ']'+ ' is ' + str(px[i,j]))
@@ -54,10 +54,9 @@ for i in range(0, 5):
         hexcolour = db.rgb_to_hex(px_r,px_g,px_b)
         #print(type(hexcolour))
          
-        print("Selecting pic close to " + str(hex(hexcolour)))
-        img = db.select_rough_rgb(hexcolour)
-        
-        
+        print("Selecting pic close to " + str(px[i,j]))
+        #img = db.select_rough_rgb(hexcolour)
+        img = db.select_closest_rgb((px[i,j]))   
         #print(base64.b64encode(img))
        
         rgb=db.avg_rgb(img)

@@ -13,13 +13,15 @@ print("The testing cralwing may take 20s...")
 print("Skipping crawl testing...")
 
 print("Opening 10 testing images...")
-ten = db.select_num(10)
+ten = db.select_num(40)
 for row in ten:
   print((row[1], row[2], row[3]))
-  db.raw_to_img(row[5]).show()
+  #db.raw_to_img(row[5]).show()
 
 print("Selecting a pic close to light blue color...")
-img = db.select_rough_rgb(0x79FFEE)
+#img = db.select_rough_rgb(0x71BABE)
+print('iop')
+img=db.select_closest_rgb((33,144,255))
 rgb=db.avg_rgb(img)
 r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
 print("Input rgb: (121, 255, 238), output rgb:" + str((r, g, b)))
