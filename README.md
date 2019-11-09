@@ -49,6 +49,7 @@ Gallery Page:
 |Functions|Paramete|Return|
 ----------|------------|------|
 |scrape_pixabay|keyword|list of image URLs from *pixabay*|
+|scrape_more_pixabay|keyword|list of image URLs from different *pixabay*'s pages|
 |scrape_unsplash|keyword|list of image URLs from *unsplash*|
 |scrape_pexels|keyword|list of image URLs from *pexels*|
 |get_image_urls|keyword|list of image URLs from all the stated websites|
