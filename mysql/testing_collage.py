@@ -22,7 +22,7 @@ print("Skipping crawl testing...")
 im = Image.open(src_img_path)
 imm = im.thumbnail((50, 50))
 px = im.load() #px is 2d matrix of pixel coordinates
-im.show()
+#im.show()
 width, height, = im.size
 print('Resizing width to ' + str(width) + ' and height to ' + str(height))
 
@@ -44,7 +44,7 @@ tiles_selected = db.select_num(30)
 
 for i in range(0, 5):
     canvas_x = i*SCALE
-    for j in range(0, 5):
+    for j in range(0, 6):
         canvas_y = j*SCALE 
         
         print('px[' +str(i) +',' +str(j)+ ']'+ ' is ' + str(px[i,j]))
