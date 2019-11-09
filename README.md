@@ -165,6 +165,8 @@ python3 testing_script.py
 ## Picture combination:
 
 ### Collaging & Mosaicing
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/collaging/mysql/sample_mosaic_comparison.jpg.jpg)
+
 
 This portion handles the collaging and mosaicing of the pictures from the DB to re-create the source image.
 
