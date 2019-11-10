@@ -5,25 +5,6 @@
 - [html5](https://en.wikipedia.org/wiki/HTML5)
 - [css3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 
-Steps to launch web server
-
-Install all the necessary python dependencies by running
-```
-pip install -r requirements.txt
-```
-
-or
-```
-pip3 install -r requirements.txt
-```
-
-Run
-```
-python3 main.py
-```
-
-Next, go to http://127.0.0.1:5000
-
 
 Homepage:
 
@@ -36,7 +17,6 @@ Gallery Page:
 ![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-gallery1.png)
 
 ![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-gallery2.png)
-
 
 ## Crawling algorithm:
 ### Websites used for image collection:
@@ -59,7 +39,6 @@ Gallery Page:
 |Functions|Paramete|Return|
 ----------|------------|------|
 |scrape_pixabay|keyword|list of image URLs from *pixabay*|
-|scrape_more_pixabay|keyword|list of image URLs from different *pixabay*'s pages|
 |scrape_unsplash|keyword|list of image URLs from *unsplash*|
 |scrape_pexels|keyword|list of image URLs from *pexels*|
 |get_image_urls|keyword|list of image URLs from all the stated websites|
@@ -80,7 +59,7 @@ Gallery Page:
 *Note: store_raw_images make use of multiprocessinng with 0.05s sleep*
 
 ## Picture Storage:
-## To crawl image with keywords
+## To cralw image with keywords
 1. Modify keywords.txt
 ```
 some
@@ -92,45 +71,29 @@ file
 ```
 2. Run
 ```
-python3 crawl.py
+python3 cralw.py
 ```
 
-### This is to keep track of keywords crawled
+### This is to keep track of keywords cralwed
 ```
 flower
 sky
 snow
 sea
-sunset
-star
-cat
-dog
 ```
-Count: 226
-Note: crawled images stored in `db.sql`
+Note: cralwed images stored in `db.sql`
 
 ### Setup Flow
 ### Docker -> Python module -> Testing script
 
 
 ### For Docker start:
-1. Execute
+execute
 ```
 docker-compose -f stack.yml up
 ```
-2. Then `command + t` to open a new terminal
-3. Insert existing image data by executing
-```
-docker ps # to get the container ID
-cp ./db.sql CONTAINER_ID:/db.sql
-docker exec -it CONTAINER_ID bash
-$bash mysql -u root -p < /db.sql # root password mentioned below
-`control + d` to exit
-```
-4. Testing
-run `python3 testing_script.py` to test extracting image from database.
 
-### MySQLWorkbench
+### MySQLWorkench
 You may want this application to help access MySQL.
 
 ### MySQL Setup Guide

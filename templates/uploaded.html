@@ -73,15 +73,30 @@
                   <center>
                     <p>Image Uploaded Successfully! </p>
                     <br />
+                    <div class=row>
+                         <div class="col-md-4 col-sm-4">
+                         </div>
+                         <div class="col-md-4 col-sm-4">
+                              <div class="progress progress-striped active">
+                                   <div class="progress-bar progress-bar-success" role="progressbar"
+                                             aria-valuenow="60" aria-valuemin="0" id="progress" aria-valuemax="100"
+                                             style="width: 40%;">
+                                        <span class="sr-only">40% 完成</span>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-4">
+                         </div>
+                         
+                    </div>
                     {% block content %}
                     {% if session.filenames %}
                     {% for filename in session.filenames %}
-                    <a href="{{ url_for('get_file', filename=filename) }}" target="_blank">
-                        <img class="img-responsive" alt="Blog Image 3" src="{{ url_for('get_file', filename=filename) }}">
+                    <a href="{{ url_for('get_file', filename=filename) }}" target="_blank" id="uploaded_img_link">
+                        <img class="img-responsive" alt="Blog Image 3" id="uploaded_img" src="{{ url_for('get_file', filename=filename) }}">
                     </a>
                     <br/>
                     <br/>
-
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
                         </div>
@@ -151,6 +166,24 @@
 <script src="{{ url_for('static', filename='js/jquery.parallax.js') }}"></script>
 <script src="{{ url_for('static', filename='js/smoothscroll.js') }}"></script>
 <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
-
+<script>
+     $(document).ready(function(){
+          img_url = $("#uploaded_img")[0].src;
+          a = img_url.split("/")
+          delete a[0];delete a[1];delete a[2];
+          img_uri = a.join("/")
+          img_uri = img_uri.replace("///", "")
+          $.get("api/create_puzzle?input="+img_uri);
+     });
+     window.setInterval(function(){
+          api_url = "api/puzzle_status.json"
+          $.getJSON(api_url, function(res){
+               $("#progress").css("width", res.progress + "%");
+               img_url = $("#uploaded_img")[0].src.split("?")[0];
+               $("#uploaded_img_link").attr("href", img_url +"?"+ new Date().getTime());
+               $("#uploaded_img").attr("src", img_url +"?"+ new Date().getTime());
+          });
+     }, 500);
+</script>
 </body>
 </html>
