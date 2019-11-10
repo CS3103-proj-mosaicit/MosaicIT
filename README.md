@@ -3,9 +3,8 @@
 ## Mosaic IT:
 
 The website is host at the link below:
-```
-http://47.75.55.165:5000/home
-```
+- [click here](http://47.75.55.165:5000/home)
+
 
 ## Frontend & Backend:
 - [python flask](http://flask.palletsprojects.com/en/1.1.x/)
