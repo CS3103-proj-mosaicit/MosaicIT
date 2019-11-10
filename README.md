@@ -15,24 +15,24 @@ http://47.75.55.165:5000/home
 
 Homepage:
 
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-home.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-home.png)
 
 Upload Page:
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-upload.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-upload.png)
 
 Upload Page - Image Uploaded:
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-imageuploaded.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-imageuploaded.png)
 
 Uploaded Page - Mosaic Generating:
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-generating.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-generating.png)
 
 Uploaded Page - Mosaic Get:
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-mosaicget.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-mosaicget.png)
 
 Gallery Page:
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-gallery1.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-gallery1.png)
 
-![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/static/images/readme-gallery2.png)
+![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-gallery2.png)
 
 ## Crawling algorithm:
 ### Websites used for image collection:
