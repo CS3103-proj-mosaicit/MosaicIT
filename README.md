@@ -174,11 +174,12 @@ This portion handles the collaging and mosaicing of the pictures from the DB to 
 ### Usage
 python3 collage.py <path to src img>
 
-**NOTE: SUPPORTS BOTH JPG AND PNG**  
+**NOTE: SUPPORTS BOTH JPG AND PNG** 
+
+All src images will be converted to 60 by 60 pixels
 
 > this **will output ./mosaic_inputFileName.jpg** which is the final mosaic picture
 
-**NOTE: try to use a smaller aspect ratio source file, because it will be scaled up many times for mosaicing**  
 
 ### Logic
 Each pixel of the original image is replaced by a crawled picture instead. Calculation is done to match the Black-White levels so that the source image may be recreated.
