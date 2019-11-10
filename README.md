@@ -1,5 +1,12 @@
 # Smart Photomosaic
 
+## Mosaic IT:
+
+The website is host at the link below:
+```
+http://47.75.55.165:5000/home
+```
+
 ## Frontend & Backend:
 - [python flask](http://flask.palletsprojects.com/en/1.1.x/)
 - [html5](https://en.wikipedia.org/wiki/HTML5)
@@ -12,6 +19,15 @@ Homepage:
 
 Upload Page:
 ![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-upload.png)
+
+Upload Page - Image Uploaded:
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-imageuploaded.png)
+
+Uploaded Page - Mosaic Generating:
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-generating.png)
+
+Uploaded Page - Mosaic Get:
+![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-mosaicget.png)
 
 Gallery Page:
 ![alt text](https://github.com/CS3103-proj-mosaicit/frontend/blob/master/images/readme-gallery1.png)
