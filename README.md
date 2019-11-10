@@ -7,6 +7,16 @@
 
 Steps to launch web server
 
+Install all the necessary python dependencies by running
+```
+pip install -r requirements.txt
+```
+
+or
+```
+pip3 install -r requirements.txt
+```
+
 Run
 ```
 python3 main.py
