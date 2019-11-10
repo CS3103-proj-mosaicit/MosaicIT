@@ -176,7 +176,7 @@ python3 collage.py <path to src img>
 
 **NOTE: SUPPORTS BOTH JPG AND PNG**  
 
-> this **will output ./mosaic_<input file name>.jpg** which is the final mosaic picture
+> this **will output ./mosaic_inputFileName.jpg** which is the final mosaic picture
 
 **NOTE: try to use a smaller aspect ratio source file, because it will be scaled up many times for mosaicing**  
 
