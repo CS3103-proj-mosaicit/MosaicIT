@@ -3,9 +3,9 @@ import numpy as np
 import sys
 from PIL import Image
 
-PIX_SIZE = 10
+PIX_SIZE = 20
 W = 30
-H = 20
+H = 30
 
 
 
@@ -16,11 +16,11 @@ def resize_img(img):
   global w, h
   size=img.size
   if(size[0] < size[1]):
-    w = int(size[0]/size[1]*W)
+    w = int(size[0]/size[1]*H)
     h = H
     img = img.resize((w, h))
   else:
-    w = W
+    w = H
     h = int(size[1]/size[0]*H)
     img = img.resize((w, h))
   return img

@@ -53,19 +53,6 @@
 </div>
 
 <!-- Home Section -->
-<!-- 
-<section id="home" class="main-contact parallax-section">
-     <div class="overlay"></div>
-     <div class="container">
-          <div class="row">
-               <div class="col-md-12 col-sm-12">
-                    <h1>Upload Picture and Get Your Mosaic!</h1>
-               </div>
-          </div>
-     </div>
-</section> -->
-
-<!-- Home Section -->
 
 <section id="home" class="main-contact parallax-section">
      <div class="overlay"></div>
@@ -86,33 +73,29 @@
           <div class="row">
 
                <div class="col-md-offset-1 col-md-10 col-sm-12">
-<!--                     <h2>Say hello..</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> -->
-
-                    <form action="/upload-image" method="POST" enctype="multipart/form-data">
-                         <div class="row">
+                    <center>
+                      <p>Upload a jpg, jpeg, png image to start the magic!</p>
+                      <p>(Please note that the png image with transparent background is not supported.)</p>
+                    </center>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                          {{ form.csrf_token }}
+                          <div class="row">
                               <div class="col-md-4 col-sm-4">
                                </div>
 
                               <div class="col-md-4 col-sm-4">
-                                   <input name="submit" type="submit" class="form-control" id="upload" value="Upload Your Image">
+                                   <input name="photo" type="file" id="photo" class="inputfile" accept="image/jpg, image/jpeg, image/png" style="position:absolute;clip:rect(0 0 0 0);">
+                                   <label class="form-control" for="photo" id="upload_img"><center>Upload Your Image</center></label>
                               </div>
                               <div class="col-md-4 col-sm-4">
                                </div>
                           </div>
-
-                          <div class="row">
-
-                               <div class="col-md-3 col-sm-3">
-                               </div>
-
-                              <div class="col-md-6 col-sm-6">
-                                   <input name="subject" type="text" class="form-control" id="theme" placeholder="Mosaic Theme">
-                           	 </div>
-
-                               <div class="col-md-3 col-sm-3">
-                               </div>
-                          </div>
+                          <!-- {{ form.submit }}<br> -->
+                          <center>
+                            {% if form.errors %}
+                            {{ form.errors }}
+                            {% endif %}
+                          </center>
 
                           <div class="row">
 
@@ -120,7 +103,7 @@
                                </div>
 
                               <div class="col-md-4 col-sm-4">
-                                   <input name="submit" type="submit" class="form-control" id="submit" value="Download Your Mosaic">
+                                   <input name="submit" type="submit" class="form-control" id="submit" value="Create Your Mosaic">
                               </div>
 
                               <div class="col-md-4 col-sm-4">
@@ -153,21 +136,6 @@
                     <p><i class="fa fa-phone"></i> 65-12345678</p>
                     <p><i class="fa fa-save"></i> info@nuscs3103group3.com</p>
                </div>
-<!-- 
-               <div class="clearfix col-md-12 col-sm-12">
-                    <hr>
-               </div>
-
-               <div class="col-md-12 col-sm-12">
-                    <ul class="social-icon">
-                         <li><a href="#" class="fa fa-facebook"></a></li>
-                         <li><a href="#" class="fa fa-twitter"></a></li>
-                         <li><a href="#" class="fa fa-google-plus"></a></li>
-                         <li><a href="#" class="fa fa-dribbble"></a></li>
-                         <li><a href="#" class="fa fa-linkedin"></a></li>
-                    </ul>
-               </div> -->
-               
           </div>
      </div>
 </footer>
@@ -176,6 +144,34 @@
 <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 
 <!-- SCRIPTS -->
+
+<!-- for file input name display -->
+<script>
+var inputs = document.querySelectorAll( '.inputfile' );
+Array.prototype.forEach.call( inputs, function( input ) {
+  var label  = input.nextElementSibling;
+  console.log(label);
+  console.log(label.innerHTML);
+  var labelVal = label.innerHTML;
+
+  input.addEventListener( 'change', function( e ) {
+    var fileName = '';
+    if( this.files ) {
+      fileName = e.target.value.split( '\\' ).pop();
+    }
+    if( fileName ) {
+      var settingsHtml = '';
+      settingsHtml += "<center>";
+      settingsHtml += fileName;
+      settingsHtml += "</center>";
+      document.getElementById('upload_img').innerHTML = settingsHtml;
+    }
+    else {
+      label.innerHTML = labelVal;
+    }
+  });
+});
+</script>
 
 <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>

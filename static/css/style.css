@@ -98,6 +98,15 @@ a:hover, a:active, a:focus {
   box-sizing: border-box;
 }
 
+
+#btn {
+  padding: 5px 10px;
+  background: #00b0f0;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+}
+
 #about, 
 #gallery,
 #contact,
@@ -439,7 +448,20 @@ a:hover, a:active, a:focus {
   transition: all 0.4s ease-in-out;
 }
 
+#contact input[type="file"] {
+  background: #bfba55;
+  border-radius: 100px;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.4s ease-in-out;
+}
+
 #contact input[type="submit"]:hover {
+  background: #333;
+}
+
+#contact input[type="file"]:hover {
   background: #333;
 }
 
@@ -598,12 +620,26 @@ a:hover, a:active, a:focus {
   transition: all 0.4s ease-in-out;
 }
 
+.blog-comment-form input[type="file"] {
+  background: #bfba55;
+  border-radius: 100px;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.4s ease-in-out;
+}
+
 .blog-comment-form input[type="submit"]:hover {
   background: #333;
   border-color: transparent;
   color: #ffffff;
 }
 
+.blog-comment-form input[type="file"]:hover {
+  background: #333;
+  border-color: transparent;
+  color: #ffffff;
+}
 
 
 /*---------------------------------------
