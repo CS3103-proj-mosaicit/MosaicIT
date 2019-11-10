@@ -7,7 +7,7 @@ import base64
 import time
 
 SCALE= 20
-MAX_SIZE = 60 
+MAX_SIZE = 20 
 
 start_time = time.time()
 
@@ -104,9 +104,10 @@ except KeyboardInterrupt:
 finally:
     canvas.save('./mosaic_' + str(src) +'.jpg')
     total_time = start_time - time.time()
-    mins = int(total_time//60)
-    seconds = total_time - 60*mins
-    print('\nTime elapsed: ' + str(mins) +'mins ' + str(seconds) + 's \n')
+    #mins = int(total_time//60)
+    #seconds = total_time - 60*mins
+    #print('\nTime elapsed: ' + str(mins) +'mins ' + str(seconds) + 's \n')
+    print('\nTime elapsed: ' + str(total_time)+ 's\n')
     print('Original image size: ' +str(width) + ' by '+ str(height)+ '\n')
     print('Collage image size: ' +str(canvas_width) + ' by ' +str(canvas_height) + '\n')
     canvas.show()      
