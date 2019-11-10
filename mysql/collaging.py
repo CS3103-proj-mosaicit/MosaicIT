@@ -13,7 +13,9 @@ start_time = time.time()
 
 #src_img_path = './tea.jpg'
 src_img_path = input("Please enter the path to the src img\n")
-
+src = src_img_path.rsplit('/',1)[1]
+src = src.split('.')[0]
+print('src is ' + str(src))
 
 db = ImageDB.db()
 db.init()
@@ -100,7 +102,7 @@ except KeyboardInterrupt:
     print('\nStopping, saving partial image...')
 
 finally:
-    canvas.save("./mosaic.jpg")
+    canvas.save('./mosaic_' + str(src) +'.jpg')
     total_time = start_time - time.time()
     mins = int(total_time//60)
     seconds = total_time - 60*mins
