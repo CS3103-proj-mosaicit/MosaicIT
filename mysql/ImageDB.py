@@ -10,7 +10,6 @@ class db(object):
     self.cursor.execute("CREATE DATABASE IF NOT EXISTS " + self.db_name)
     self.cursor.execute("USE " + self.db_name)
     self.cursor.execute("CREATE TABLE IF NOT EXISTS image(id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY, r INT NOT NULL, g INT NOT NULL, b INT NOT NULL, hash INT NOT NULL UNIQUE, img MEDIUMBLOB)")
-    
 
   def connect(self):
     self.db_name = "imagedb"
@@ -19,7 +18,7 @@ class db(object):
                                   port=3306,
                                   password='3103',
                                   use_pure=True)
-    self.cursor = self.conn.cursor()
+    self.cursor = self.conn.cursor(buffered=True)
 
   def test(self):
     # this function test: insert, select
@@ -73,19 +72,31 @@ class db(object):
     except:
       return -1
     return result
-  
+
+  def rgb_to_int(self, rgb):
+    r, g, b = rgb
+    return r*65536 + g*256 + b
+
+  def int_to_rgb(self, rgb):
+    r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
+    return (r, g, b)
+
   def select_rough_rgb(self, rgb):
     img = None
-    step = 10
+    step = 0
     r, g, b = rgb // 65536, (rgb - rgb // 65536 * 65536) // 256, rgb % 256
-    while not img:
+    while img == None:
       try:
+        # print(sql)
+        step = step + 10
         self.cursor.execute("SELECT img FROM imagedb.image WHERE r > %s AND r < %s AND g > %s AND g < %s AND b > %s And b < %s;", (r - step, r + step, g - step, g + step, b - step, b + step))
-        step += 10
+        # rl, rr, gl, gr, bl, br = (r - step, r + step, g - step, g + step, b - step, b + step)
+        print(step)
         img = self.cursor.fetchone()[0]
-      except:
+      except Exception as e:
+        # print(e)
         continue
-      return img
+    return img
 
   def select_ten(self):
     self.cursor.execute("SELECT * FROM imagedb.image LIMIT 10")

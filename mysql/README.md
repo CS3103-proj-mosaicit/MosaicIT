@@ -23,6 +23,23 @@ sunset
 star
 cat
 dog
+mountain
+dear
+deer
+love
+whale
+shark
+blue
+red
+green
+yellow
+gray
+brown
+purple
+sun
+light
+nature
+galaxy
 ```
 Note: crawled images stored in `db.sql`
 
