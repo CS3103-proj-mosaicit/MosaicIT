@@ -5,6 +5,34 @@
 The website is host at the link below:
 - [click here](http://47.75.55.165:5000/home)
 
+## How to run:
+
+- setup the pip by running:
+
+```
+pip install -r requirements.txt
+python3 main.py
+```
+
+Then go to http://127.0.0.1:5000
+
+[It's recommended to use the small-size image to test. It will give fast result.]
+
+## What is Smart Photomosaic? 
+
+Crawl images based on the user provided terms (or pictures)
+Desired image is created with crawled images 
+
+How? 
+First Mosaic the whole picture to divide it into a lot of small pieces of the same RGB color.
+Then use HSV to match each block of the RGB color with a similar picture.
+
+
+## Why Smart Photomosaic? 
+
+User-friendly tool that allows quick creation of photomosaic.
+Make meaningful images for users.
+
 
 ## Frontend & Backend:
 - [python flask](http://flask.palletsprojects.com/en/1.1.x/)
@@ -33,7 +61,8 @@ Gallery Page:
 
 ![alt text](https://github.com/CS3103-proj-mosaicit/MosaicIT/blob/master/static/images/readme-gallery2.png)
 
-## Crawling algorithm:
+
+## Crawling algorithm(In crawler version 2):
 ### Websites used for image collection:
 
 - [pixabay](https://pixabay.com/)
@@ -73,8 +102,8 @@ Gallery Page:
 
 *Note: store_raw_images make use of multiprocessinng with 0.05s sleep*
 
-## Picture Storage:
-## To cralw image with keywords
+## Picture Storage(Mysql DB):
+## To crawl image with keywords
 1. Modify keywords.txt
 ```
 some

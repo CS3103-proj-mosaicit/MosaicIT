@@ -4,8 +4,8 @@ import sys
 from PIL import Image
 
 PIX_SIZE = 20
-W = 30
-H = 30
+SIZE = 30
+#H = 30
 
 
 
@@ -16,12 +16,12 @@ def resize_img(img):
   global w, h
   size=img.size
   if(size[0] < size[1]):
-    w = int(size[0]/size[1]*H)
-    h = H
+    w = int(size[0]/size[1]*SIZE)
+    h = SIZE
     img = img.resize((w, h))
   else:
-    w = H
-    h = int(size[1]/size[0]*H)
+    w = SIZE
+    h = int(size[1]/size[0]*SIZE)
     img = img.resize((w, h))
   return img
 
@@ -56,7 +56,9 @@ def main():
       final.paste(pix_img, (y*PIX_SIZE, x*PIX_SIZE))
       print(pix[y, x])
   final.show()
-
+  file_name = path.split('/')[-1]
+  final.save(path.replace(file_name, '') + 'mosaic ' + file_name)
+  print("File saved to original path.")
 
 if __name__ == '__main__':
   main()
