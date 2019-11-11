@@ -9,7 +9,7 @@ def read_keyword():
 def start():
     for keyword in read_keyword():
         print(f"start Keyword={keyword}")
-        cmd = f"python3 image_cralwer.py --keyword {keyword}"
+        cmd = f"python3 crawler.py --keyword {keyword}"
         os.system(cmd)
 
 
